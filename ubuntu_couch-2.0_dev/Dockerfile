@@ -28,7 +28,7 @@ RUN curl -sL https://deb.nodesource.com/setup_5.x | bash - \
 # clone and make couchdb
 RUN cd /usr/src && git clone --depth 1 https://git-wip-us.apache.org/repos/asf/couchdb.git \
  	&& cd couchdb && git checkout master \
- 	&& cd /usr/src/couchdb && mkdir share/www && ./configure --disable-docs && make
+ 	&& cd /usr/src/couchdb && ./configure --disable-docs && make
 
 # cleanup
 RUN apt-get purge -y \
@@ -50,7 +50,7 @@ RUN chmod +x /usr/src/couchdb/dev/run && chown -R couchdb:couchdb /usr/src/couch
 
 # go
 USER couchdb
-EXPOSE 5984 15984 25984 35984
+EXPOSE 5984 15984 25984 35984 15986 25986 35986
 WORKDIR /usr/src/couchdb
 
 ENTRYPOINT ["/usr/src/couchdb/dev/run"]
