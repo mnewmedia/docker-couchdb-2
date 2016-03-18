@@ -21,8 +21,8 @@ RUN apt-get update -y -qq && apt-get install -y --no-install-recommends \
     openssl \
     python \
 
-RUN curl -sL https://deb.nodesource.com/setup_5.x | bash -
-    && apt-get install -y nodejs
+RUN curl -sL https://deb.nodesource.com/setup_5.x | bash - \
+    && apt-get install -y nodejs \
     && npm install -g grunt-cli
 
 # clone and make couchdb
