@@ -19,7 +19,7 @@ RUN apt-get update -y -qq && apt-get install -y --no-install-recommends \
     libicu-dev \
     libmozjs185-dev \
     openssl \
-    python \
+    python
 
 RUN curl -sL https://deb.nodesource.com/setup_5.x | bash - \
     && apt-get update -y -qq && apt-get install -y nodejs \
