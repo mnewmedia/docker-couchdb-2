@@ -13,6 +13,7 @@ RUN apt-get update -y -qq && apt-get install -y --no-install-recommends \
     curl \
     erlang-dev \
     erlang-nox \
+    erlang-reltool \
     git \
     haproxy \
     libcurl4-openssl-dev \
@@ -28,14 +29,17 @@ RUN curl -sL https://deb.nodesource.com/setup_5.x | bash - \
 # clone and make couchdb
 RUN cd /usr/src && git clone --depth 1 https://git-wip-us.apache.org/repos/asf/couchdb.git \
  	&& cd couchdb && git checkout master \
- 	&& cd /usr/src/couchdb && ./configure --disable-docs && make
+ 	&& cd /usr/src/couchdb && ./configure --disable-docs && make && make install \
+ 	&& rm -rf /usr/src/couchdb \
+ 	&& cd /usr/local/lib/couchdb/etc && sed -i 's/-name couchdb/-name couchdb@127.0.0.1/g' vm.args
 
 # cleanup
-RUN apt-get purge -y \
+RUN apt-get install -y \
     binutils \
     build-essential \
     cpp \
     erlang-dev \
+    erlang-reltool \
     libicu-dev \
     make \
     perl
