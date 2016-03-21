@@ -30,7 +30,7 @@ RUN curl -sL https://deb.nodesource.com/setup_5.x | bash - \
 RUN cd /usr/src && git clone --depth 1 https://git-wip-us.apache.org/repos/asf/couchdb.git \
  	&& cd couchdb && git checkout master \
  	&& cd /usr/src/couchdb && ./configure --disable-docs && make && make install \
- 	&& cd /usr/local/lib/couchdb/etc && sed -i 's/-name couchdb/-name couchdb@127.0.0.1/g' vm.args \
+ 	&& cd /usr/local/lib/couchdb/etc && sed -i 's/-name couchdb/-name couchdb@127.0.0.1/g' vm.args
 
  	# todo: make available as a service
  	# && ln -s /usr/local/etc/init.d/couchdb /etc/init.d
